@@ -3,11 +3,19 @@
 </template>
 
 <script>
+import { computed } from '@vue/runtime-core';
 import Home from './components/Home.vue';
+
 export default {
   name: 'App',
   components: {
     Home,
+  },
+  async mounted() {
+    await this.$store.dispatch('load');
+    return {
+      cats: computed(() => this.$store.state.all),
+    };
   },
 };
 </script>
