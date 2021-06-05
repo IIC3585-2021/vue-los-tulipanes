@@ -59,8 +59,8 @@
     </div>
     <div class="buttons-container">
       <div class="buttons">
-        <NoButton />
-        <YesButton />
+        <NoButton v-bind:cat="name" />
+        <YesButton v-bind:cat="name" />
       </div>
     </div>
   </div>

@@ -13,14 +13,14 @@ export const store = createStore({
   mutations: {
     like(state, cat) {
       state.liked.add(cat);
-      state.disliked.remove(cat);
-      state.remaining.remove(cat);
+      state.disliked.delete(cat);
+      state.remaining.delete(cat);
     },
 
     dislike(state, cat) {
       state.disliked.add(cat);
-      state.liked.remove(cat);
-      state.remaining.remove(cat);
+      state.liked.delete(cat);
+      state.remaining.delete(cat);
     },
 
     add(state, cat) {
