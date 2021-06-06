@@ -1,31 +1,36 @@
 import { createStore } from 'vuex';
 import { getCatData } from './api';
 
+const likeStatus = {
+  disliked: 0,
+  neutral: 1,
+  liked: 2,
+}
+
 export const store = createStore({
   state() {
     return {
-      liked: new Set(),
-      disliked: new Set(),
-      all: new Set(),
-      remaining: new Set()
+      cats: []
     }
   },
+
+  getters: {
+    firstNeutralCat: (state) => {
+      return state.cats.find((cat) => cat.liked === likeStatus.neutral);
+    }
+  },
+
   mutations: {
-    like(state, cat) {
-      state.liked.add(cat);
-      state.disliked.remove(cat);
-      state.remaining.remove(cat);
+    like(state, catId) {
+      state.cats.find((cat) => cat.id === catId).liked = likeStatus.liked;
     },
 
-    dislike(state, cat) {
-      state.disliked.add(cat);
-      state.liked.remove(cat);
-      state.remaining.remove(cat);
+    dislike(state, catId) {
+      state.cats.find((cat) => cat.id === catId).liked = likeStatus.disliked;
     },
 
     add(state, cat) {
-      state.all.add(cat);
-      state.remaining.add(cat);
+      state.cats.push({ ...cat, liked: likeStatus.neutral });
     }
   },
   actions: {

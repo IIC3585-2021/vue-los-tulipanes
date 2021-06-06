@@ -1,6 +1,7 @@
 export async function getCatData() {
   try {
-    const response = await fetch('');
+    //const authKey = process.env.VUE_APP_API_KEY;
+    const response = await fetch();
     const json = await response.json();
     return json;
   } catch {

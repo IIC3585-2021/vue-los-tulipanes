@@ -1,6 +1,6 @@
 <template>
   <Header />
-  <Card name="Kalu" />
+  <Card :cat="cat" v-if="cat" />
 </template>
 
 <script>
@@ -10,6 +10,14 @@ import Card from './Card.vue';
 export default {
   name: 'Home',
   components: { Header, Card },
+  computed: {
+    cat() {
+      return this.$store.getters.firstNeutralCat;
+    },
+  },
+  async mounted() {
+    await this.$store.dispatch('load');
+  },
 };
 </script>
 
