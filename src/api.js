@@ -1,7 +1,12 @@
 export async function getCatData() {
   try {
-    //const authKey = process.env.VUE_APP_API_KEY;
-    const response = await fetch();
+    // const authKey = process.env.VUE_APP_API_KEY;
+    const response = await fetch('https://api.thecatapi.com/v1/breeds/', {
+                                  method: 'GET',
+                                  headers: {
+                                  'x-api-key': authKey
+                                  }
+                              });
     const json = await response.json();
     return json;
   } catch {

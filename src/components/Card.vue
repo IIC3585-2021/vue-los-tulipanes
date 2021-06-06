@@ -4,6 +4,13 @@
       <h2>{{ cat.name }}</h2>
       <p>{{ cat.origin }}</p>
     </div>
+    <div>
+      <img :src="'https://www.w3schools.com/images/w3schools_green.jpg'" class="center">
+      <p>{{ cat.country }}</p>
+      <p>{{ cat.description }}</p>
+      <p>{{ cat.temperament }}</p>
+    </div>
+      <WikiButton />
     <div class="buttons-container">
       <div class="buttons">
         <NoButton :id="cat.id" />
@@ -16,10 +23,11 @@
 <script>
 import YesButton from './buttons/YesButton.vue';
 import NoButton from './buttons/NoButton.vue';
+import WikiButton from './buttons/WikiButton.vue';
 export default {
   name: 'Card',
   props: { cat: Object },
-  components: { YesButton, NoButton },
+  components: { YesButton, NoButton, WikiButton},
 };
 </script>
 
@@ -39,9 +47,9 @@ export default {
   align-items: center;
 }
 
-.card-content {
+/* .card-content {
   overflow: scroll;
-}
+} */
 
 .card-content h2 {
   font-size: 2em;
