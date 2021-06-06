@@ -21,12 +21,14 @@ export const store = createStore({
   },
 
   mutations: {
+
     like(state, catId) {
       state.cats.find((cat) => cat.id === catId).liked = likeStatus.liked;
     },
 
     dislike(state, catId) {
       state.cats.find((cat) => cat.id === catId).liked = likeStatus.disliked;
+
     },
 
     add(state, cat) {
