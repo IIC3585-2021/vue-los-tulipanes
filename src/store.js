@@ -17,18 +17,19 @@ export const store = createStore({
   getters: {
     firstNeutralCat: (state) => {
       return state.cats.find((cat) => cat.liked === likeStatus.neutral);
-    }
+    },
   },
 
   mutations: {
 
     like(state, catId) {
-      state.cats.find((cat) => cat.id === catId).liked = likeStatus.liked;
+      const cat = state.cats.find((cat) => cat.id === catId)
+      cat.liked = likeStatus.liked;
     },
 
     dislike(state, catId) {
-      state.cats.find((cat) => cat.id === catId).liked = likeStatus.disliked;
-
+      const cat = state.cats.find((cat) => cat.id === catId)
+      cat.liked = likeStatus.disliked;
     },
 
     add(state, cat) {

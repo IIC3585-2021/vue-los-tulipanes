@@ -6,8 +6,8 @@
     </div>
     <div class="buttons-container">
       <div class="buttons">
-        <NoButton v-bind:cat="name" />
-        <YesButton v-bind:cat="name" />
+        <NoButton :id="cat.id" />
+        <YesButton :id="cat.id" />
       </div>
     </div>
   </div>

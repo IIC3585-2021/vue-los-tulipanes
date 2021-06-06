@@ -1,6 +1,7 @@
 <template>
   <Header />
   <Card :cat="cat" v-if="cat" />
+  <div v-else>No quedan gatos</div>
 </template>
 
 <script>
