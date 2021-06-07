@@ -32,7 +32,6 @@ export const store = createStore({
   },
 
   mutations: {
-
     like(state, catId) {
       const cat = state.cats.find((cat) => cat.id === catId)
       cat.liked = likeStatus.liked;
@@ -51,8 +50,8 @@ export const store = createStore({
     addImg(state, { catId, imageUrl }) {
       state.catImages[catId] = imageUrl;
     }
-
   },
+
   actions: {
     async loadImage({ commit }, catId) {
       const imageUrl = await getCatImageUrl(catId);
