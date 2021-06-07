@@ -1,7 +1,12 @@
 export async function getCatData() {
   try {
-    //const authKey = process.env.VUE_APP_API_KEY;
-    const response = await fetch();
+    const authKey = process.env.VUE_APP_API_KEY;
+    const response = await fetch('https://api.thecatapi.com/v1/breeds/', {
+      method: 'GET',
+      headers: {
+        'x-api-key': authKey
+      }
+    });
     const json = await response.json();
     return json;
   } catch {
@@ -26,5 +31,15 @@ export async function getCatData() {
         "wikipedia_url": "https://en.wikipedia.org/wiki/Abyssinian_(cat)"
       }
     ]
+  }
+}
+
+export async function getCatImageUrl(catId) {
+  try {
+    const response = await fetch(`https://api.thecatapi.com/v1/images/search?breed_id=${catId}`);
+    const json = await response.json();
+    return json[0].url;
+  } catch (err) {
+    return "https://http.cat/404"
   }
 }

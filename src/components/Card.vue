@@ -1,25 +1,12 @@
 <template>
   <div class="card">
-    <div class="card-content">
-      <h2>{{ cat.name }}</h2>
-      <p>{{ cat.origin }}</p>
-    </div>
-    <div class="buttons-container">
-      <div class="buttons">
-        <NoButton :id="cat.id" />
-        <YesButton :id="cat.id" />
-      </div>
-    </div>
+    <slot></slot>
   </div>
 </template>
 
 <script>
-import YesButton from './buttons/YesButton.vue';
-import NoButton from './buttons/NoButton.vue';
 export default {
   name: 'Card',
-  props: { cat: Object },
-  components: { YesButton, NoButton },
 };
 </script>
 
@@ -37,24 +24,5 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-}
-
-.card-content {
-  overflow: scroll;
-}
-
-.card-content h2 {
-  font-size: 2em;
-}
-
-.buttons-container {
-  width: 100%;
-}
-
-.buttons {
-  width: 100%;
-  margin: auto;
-  display: flex;
-  justify-content: space-evenly;
 }
 </style>

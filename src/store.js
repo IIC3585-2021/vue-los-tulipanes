@@ -1,5 +1,5 @@
 import { createStore } from 'vuex';
-import { getCatData } from './api';
+import { getCatData, getCatImageUrl } from './api';
 
 const likeStatus = {
   disliked: 0,
@@ -10,7 +10,9 @@ const likeStatus = {
 export const store = createStore({
   state() {
     return {
-      cats: []
+      cats: [],
+      catImages: {},
+      hasLoaded: false
     }
   },
 
@@ -18,6 +20,15 @@ export const store = createStore({
     firstNeutralCat: (state) => {
       return state.cats.find((cat) => cat.liked === likeStatus.neutral);
     },
+    catImage: (state) => (catId) => {
+      return state.catImages[catId]
+    },
+    hasLoaded: (state) => {
+      return state.hasLoaded;
+    },
+    likedCatNames: (state) => {
+      return state.cats.filter((cat) => cat.liked === likeStatus.liked).map((cat) => cat.name)
+    }
   },
 
   mutations: {
@@ -34,14 +45,26 @@ export const store = createStore({
 
     add(state, cat) {
       state.cats.push({ ...cat, liked: likeStatus.neutral });
+      state.hasLoaded = true;
+    },
+
+    addImg(state, { catId, imageUrl }) {
+      state.catImages[catId] = imageUrl;
     }
+
   },
   actions: {
-    async load() {
+    async loadImage({ commit }, catId) {
+      const imageUrl = await getCatImageUrl(catId);
+      commit('addImg', { catId, imageUrl })
+    },
+
+    async load({ commit, dispatch }) {
       const cats = await getCatData();
-      cats.forEach((cat) => {
-        this.commit('add', cat)
-      })
+      await Promise.all(cats.map(async (cat) => {
+        commit('add', cat)
+        await dispatch('loadImage', cat.id)
+      }))
     },
   }
 })
