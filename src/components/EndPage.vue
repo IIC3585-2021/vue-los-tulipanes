@@ -31,6 +31,7 @@ export default {
   },
   methods: {
     reloadPage() {
+      alert("Successfuly Registered!")
       window.location.reload();
     },
   },
@@ -40,6 +41,7 @@ export default {
 <style>
 #cat-list {
   overflow: scroll;
+  overflow-x: hidden;
   width: 100%;
   margin: auto;
   text-align: center;

@@ -30,6 +30,8 @@ export default {
 <style>
 .card-content {
   overflow: scroll;
+  overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 .card-content h2 {
