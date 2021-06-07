@@ -57,11 +57,7 @@ export default {
 
 #form {
   display: flex;
-  align-content: end;
+  align-content: flex-end;
   justify-content: center;
 }
-
-/* #form button {
-  
-} */
 </style>
